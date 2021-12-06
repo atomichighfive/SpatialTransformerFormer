@@ -1,5 +1,5 @@
 # SpatialTransformerFormer
-Experiments using Spatial Transformers to achieve the principles of Transformers in a flexible and interpretable way.
+PoC of a new type of Deep Learning Layer using Spatial Transformers to achieve the principles of Transformers in a flexible and interpretable way.
 
 The idea of the SpatialTransformerFormer is to leverage the attention capabilities of spatial transformers to allow a model to attain spatially meaningful latent states through a canvas-based self attention.
 
