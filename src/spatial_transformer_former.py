@@ -1,4 +1,5 @@
 from functools import reduce
+from math import sqrt
 
 import torch
 import torch.nn as nn
@@ -12,6 +13,19 @@ class Permute(nn.Module):
 
     def forward(self, x):
         return x.permute(self.indices)
+    
+    
+class PositionalEncoding2d(nn.Module):
+    def __init__(self, shape):
+        super(PositionalEncoding2d, self).__init__()
+        self.positional_encoding = nn.Parameter(
+            2.0*sqrt(1.0/shape[0])*torch.rand(1, shape[0], shape[1], shape[2])-sqrt(1.0/shape[0]),
+            requires_grad=True
+        )
+        
+    def forward(self, x):
+        x = torch.concat([x, self.positional_encoding.expand(x.shape[0], -1, -1, -1)], dim=1)
+        return x
 
 
 class VariationalSpatialTransformer(nn.Module):
